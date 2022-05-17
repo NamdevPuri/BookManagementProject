@@ -37,6 +37,8 @@ const createUser = async function (req, res) {
         }
         
         // ADDRESS VALIDATIONS 
+
+      
         if (!validator.isValid(address)) {
             return res.status(400).send({ status: false, message: "Enter Address first" });
         }
