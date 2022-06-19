@@ -44,6 +44,7 @@ Books Model
 
 
 { 
+
   title: {string, mandatory, unique},
   
   excerpt: {string, mandatory}, 
@@ -75,6 +76,7 @@ Review Model (Books review)
 
 
 {
+
   bookId: {ObjectId, mandatory, refs to book model},
   
   reviewedBy: {string, mandatory, default 'Guest', value: reviewer's name},
@@ -277,10 +279,14 @@ Response
 Successful Response structure
 
 {
+
   status: true,
+  
   message: 'Success',
+  
   data: {
   }
+  
 }
 
 Error Response structure
@@ -294,143 +300,289 @@ Error Response structure
 
 
 Collections
+
 users
+
 {
+
   _id: ObjectId("88abc190ef0288abc190ef02"),
+  
   title: "Mr",
+  
   name: "John Doe",
+  
   phone: 9897969594,
+  
   email: "johndoe@mailinator.com", 
+  
   password: "abcd1234567",
+  
   address: {
+  
     street: "110, Ridhi Sidhi Tower",
+    
     city: "Jaipur",
+    
     pincode: "400001"
+    
   },
+  
   "createdAt": "2021-09-17T04:25:07.803Z",
+  
   "updatedAt": "2021-09-17T04:25:07.803Z",
+  
 }
+
+
 books
-{
+
+{ 
+
   "_id": ObjectId("88abc190ef0288abc190ef55"),
+  
   "title": "How to win friends and influence people",
+  
   "excerpt": "book body",
+  
   "userId": ObjectId("88abc190ef0288abc190ef02"),
+  
   "ISBN": "978-0008391331",
+  
   "category": "Book",
+  
   "subcategory": "Non fiction",
+  
   "deleted": false,
+  
   "reviews": 0,
+  
   "deletedAt": "", // if deleted is true deletedAt will have a date 2021-09-17T04:25:07.803Z,
+  
   "releasedAt": "2021-09-17T04:25:07.803Z"
+  
   "createdAt": "2021-09-17T04:25:07.803Z",
+  
   "updatedAt": "2021-09-17T04:25:07.803Z",
+  
 }
+
+
 reviews
+
 {
+
   "_id": ObjectId("88abc190ef0288abc190ef88"),
+  
   bookId: ObjectId("88abc190ef0288abc190ef55"),
+  
   reviewedBy: "Jane Doe",
+  
   reviewedAt: "2021-09-17T04:25:07.803Z",
+  
   rating: 4,
+  
   review: "An exciting nerving thriller. A gripping tale. A must read book."
+  
 }
+
 Response examples
+
 Get books response
+
 {
+
   status: true,
+  
   message: 'Books list',
-  data: [
+  
+  data:
+  
+  [
     {
+    
       "_id": ObjectId("88abc190ef0288abc190ef55"),
+      
       "title": "How to win friends and influence people",
+      
       "excerpt": "book body",
+      
       "userId": ObjectId("88abc190ef0288abc190ef02")
+      
       "category": "Book",
+      
       "reviews": 0,
+      
       "releasedAt": "2021-09-17T04:25:07.803Z"
+      
     },
+    
     {
+    
       "_id": ObjectId("88abc190ef0288abc190ef56"),
+      
       "title": "How to win friends and influence people",
+      
       "excerpt": "book body",
+      
       "userId": ObjectId("88abc190ef0288abc190ef02")
+      
       "category": "Book",
+      
       "reviews": 0,
+      
       "releasedAt": "2021-09-17T04:25:07.803Z"
+      
     }
+    
   ]
+  
 }
+
 Book details response
+
 {
+
   status: true,
+  
   message: 'Books list',
+  
   data: {
+  
     "_id": ObjectId("88abc190ef0288abc190ef55"),
+    
     "title": "How to win friends and influence people",
+    
     "excerpt": "book body",
+    
     "userId": ObjectId("88abc190ef0288abc190ef02")
+    
     "category": "Book",
+    
     "subcategory": ["Non fiction", "Self Help"],
+    
     "deleted": false,
+    
     "reviews": 0,
+    
     "deletedAt": "", // if deleted is true deletedAt will have a date 2021-09-17T04:25:07.803Z,
+    
     "releasedAt": "2021-09-17T04:25:07.803Z"
+    
     "createdAt": "2021-09-17T04:25:07.803Z",
+    
     "updatedAt": "2021-09-17T04:25:07.803Z",
-    "reviewsData": [
+    
+    "reviewsData": 
+    
+   [
       {
+      
         "_id": ObjectId("88abc190ef0288abc190ef88"),
+        
         bookId: ObjectId("88abc190ef0288abc190ef55"),
+        
         reviewedBy: "Jane Doe",
+        
         reviewedAt: "2021-09-17T04:25:07.803Z",
+        
         rating: 4,
+        
         review: "An exciting nerving thriller. A gripping tale. A must read book."
+        
       },
+      
       {
+      
         "_id": ObjectId("88abc190ef0288abc190ef89"),
+        
         bookId: ObjectId("88abc190ef0288abc190ef55"),
+        
         reviewedBy: "Jane Doe",
+        
         reviewedAt: "2021-09-17T04:25:07.803Z",
+        
         rating: 4,
+        
         review: "An exciting nerving thriller. A gripping tale. A must read book."
+        
       },
+      
       {
+      
         "_id": ObjectId("88abc190ef0288abc190ef90"),
+        
         bookId: ObjectId("88abc190ef0288abc190ef55"),
+        
         reviewedBy: "Jane Doe",
+        
         reviewedAt: "2021-09-17T04:25:07.803Z",
+        
         rating: 4,
+        
         review: "An exciting nerving thriller. A gripping tale. A must read book."
+        
       },
+      
       {
+      
         "_id": ObjectId("88abc190ef0288abc190ef91"),
+        
         bookId: ObjectId("88abc190ef0288abc190ef55"),
+        
         reviewedBy: "Jane Doe",
+        
         reviewedAt: "2021-09-17T04:25:07.803Z",
+        
         rating: 4,
+        
         review: "An exciting nerving thriller. A gripping tale. A must read book."
+        
       }, 
+      
     ]
+    
   }
+  
 }
+
+
 Book details response no reviews
+
 {
+
   status: true,
+  
   message: 'Books list',
-  data: {
+  
+  data: 
+  {
+  
     "_id": ObjectId("88abc190ef0288abc190ef55"),
+    
     "title": "How to win friends and influence people",
+    
     "excerpt": "book body",
+    
     "userId": ObjectId("88abc190ef0288abc190ef02")
+    
     "category": "Book",
+    
     "subcategory": "Non fiction", "Self Help"],
+    
     "deleted": false,
+    
     "reviews": 0,
+    
     "deletedAt": "", // if deleted is true deletedAt will have a date 2021-09-17T04:25:07.803Z,
+    
     "releasedAt": "2021-09-17"
+    
     "createdAt": "2021-09-17T04:25:07.803Z",
+    
     "updatedAt": "2021-09-17T04:25:07.803Z",
+    
     "reviewsData": []
+    
   }
+  
 }
